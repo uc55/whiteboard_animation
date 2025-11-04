@@ -232,10 +232,10 @@ export default function Whiteboard() {
 
             {visibleElements.length === 0 && (
               <div className="absolute inset-0 flex items-center justify-center text-slate-300">
-                <p className="text-center">
+                <div className="text-center">
                   <p className="mb-2">No elements on this canvas</p>
                   <p className="text-sm text-slate-400">Add elements from the left panel</p>
-                </p>
+                </div>
               </div>
             )}
           </div>
