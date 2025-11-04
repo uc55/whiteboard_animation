@@ -57,8 +57,8 @@ export default function Whiteboard() {
     const newElement: WhiteboardElement = {
       id: `element-${Date.now()}`,
       type,
-      x: 50 + Math.random() * 100,
-      y: 50 + Math.random() * 100,
+      x: 10 + Math.random() * 60,
+      y: 10 + Math.random() * 60,
       width: type === "heading" ? 300 : type === "list" ? 250 : 200,
       height: type === "paragraph" ? 120 : 40,
       content:
