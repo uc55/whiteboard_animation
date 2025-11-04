@@ -69,7 +69,7 @@ export default function Whiteboard() {
 
   const currentResolution = resolutions[resolution as keyof typeof resolutions] || resolutions.landscape;
 
-  const addElement = (type: WhiteboardElement["type"]) => {
+  const addElement = useCallback((type: WhiteboardElement["type"]) => {
     const newElement: WhiteboardElement = {
       id: `element-${Date.now()}`,
       type,
@@ -96,7 +96,7 @@ export default function Whiteboard() {
     };
     setElements((prev) => [...prev, newElement]);
     setSelectedElementId(newElement.id);
-  };
+  }, [activeLayerId]);
 
   const updateElement = useCallback((id: string, updates: Partial<WhiteboardElement>) => {
     setElements((prev) =>
