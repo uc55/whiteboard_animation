@@ -191,6 +191,13 @@ export default function Whiteboard() {
           <ElementToolbar onAddElement={addElement} />
 
           <div className="border-t border-slate-700/50 pt-4">
+            <BackgroundPanel
+              background={background}
+              onBackgroundChange={setBackground}
+            />
+          </div>
+
+          <div className="border-t border-slate-700/50 pt-4">
             <h3 className="text-sm font-semibold text-white mb-3">Layers</h3>
             <LayerPanel
               layers={layers}
