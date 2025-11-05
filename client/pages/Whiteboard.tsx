@@ -290,8 +290,8 @@ export default function Whiteboard() {
         </div>
 
         {/* Right Sidebar - Properties */}
-        {selectedElementId && (
-          <div className="w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4" style={{ overflowY: 'auto', overflowX: 'visible' }}>
+        {selectedElementId && showRightSidebar && (
+          <div className="w-56 md:w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex-shrink-0 transition-all duration-300" style={{ overflowY: 'auto', overflowX: 'visible' }}>
             <ElementPropertyEditor
               element={elements.find((el) => el.id === selectedElementId)!}
               onUpdate={updateElement}
