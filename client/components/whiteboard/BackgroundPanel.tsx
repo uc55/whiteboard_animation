@@ -77,25 +77,30 @@ export default function BackgroundPanel({
       {background.type === "image" && (
         <div>
           <label className="text-xs text-slate-400 block mb-2">Upload Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                  const imageUrl = event.target?.result as string;
-                  onBackgroundChange({ ...background, imageUrl });
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-            className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400 file:bg-cyan-500/20 file:border-cyan-400 file:text-cyan-300 file:rounded file:px-2 file:py-1 file:text-xs file:font-medium file:cursor-pointer file:mr-2"
-          />
-          <p className="text-xs text-slate-500 mt-2">
-            {background.imageUrl ? "✓ Image uploaded" : "Select an image file"}
-          </p>
+          <label className="block relative cursor-pointer">
+            <div className="bg-slate-800 border border-slate-600 rounded px-4 py-3 text-center hover:border-cyan-400 transition-colors">
+              <p className="text-sm text-slate-300 font-medium">
+                {background.imageUrl ? "✓ Image uploaded" : "Click to select image"}
+              </p>
+              <p className="text-xs text-slate-500 mt-1">or drag and drop</p>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const imageUrl = event.target?.result as string;
+                    onBackgroundChange({ ...background, imageUrl });
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+              className="hidden"
+            />
+          </label>
         </div>
       )}
     </div>
