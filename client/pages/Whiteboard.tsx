@@ -386,6 +386,59 @@ function ElementPropertyEditor({
         />
       </div>
 
+      {isTextElement && (
+        <>
+          <div className="border-t border-slate-700 pt-4">
+            <h4 className="text-xs font-semibold text-white mb-3">Animation</h4>
+
+            <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer mb-3">
+              <input
+                type="checkbox"
+                checked={element.animation?.enabled || false}
+                onChange={(e) =>
+                  onUpdate(element.id, {
+                    animation: { ...element.animation, enabled: e.target.checked, duration: element.animation?.duration || 3 },
+                  })
+                }
+                className="w-4 h-4"
+              />
+              Enable Text Animation
+            </label>
+
+            {element.animation?.enabled && (
+              <>
+                <div className="mb-4">
+                  <label className="text-xs text-slate-400 block mb-2">
+                    Duration: {element.animation.duration}s
+                  </label>
+                  <input
+                    type="range"
+                    min="0.5"
+                    max="10"
+                    step="0.5"
+                    value={element.animation.duration || 3}
+                    onChange={(e) =>
+                      onUpdate(element.id, {
+                        animation: {
+                          ...element.animation,
+                          duration: parseFloat(e.target.value),
+                        },
+                      })
+                    }
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Animation Preview */}
+                <div className="mt-4">
+                  <TextAnimationRenderer element={element} />
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
+
       <div className="pt-2 border-t border-slate-700">
         <label className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
           <input
