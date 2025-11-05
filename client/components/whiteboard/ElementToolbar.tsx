@@ -1,11 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Type,
-  Heading1,
-  FileText,
-  CheckSquare,
-  List,
-} from "lucide-react";
+import { Type, Heading1, FileText, CheckSquare, List } from "lucide-react";
 import { WhiteboardElement } from "@/pages/Whiteboard";
 
 interface ElementToolbarProps {
@@ -48,7 +42,9 @@ const tools = [
 export default function ElementToolbar({ onAddElement }: ElementToolbarProps) {
   return (
     <div className="space-y-2">
-      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">Add Elements</h3>
+      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">
+        Add Elements
+      </h3>
       <div className="grid grid-cols-2 gap-1 md:gap-2">
         {tools.map((tool) => {
           const Icon = tool.icon;

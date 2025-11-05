@@ -1,7 +1,16 @@
 import { useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Plus, Trash2, Copy, Eye, EyeOff, Menu, X } from "lucide-react";
+import {
+  ChevronLeft,
+  Plus,
+  Trash2,
+  Copy,
+  Eye,
+  EyeOff,
+  Menu,
+  X,
+} from "lucide-react";
 import DraggableElement from "@/components/whiteboard/DraggableElement";
 import LayerPanel from "@/components/whiteboard/LayerPanel";
 import ResolutionSelector from "@/components/whiteboard/ResolutionSelector";
@@ -43,7 +52,10 @@ export interface CanvasBackground {
 }
 
 const DEFAULT_RESOLUTION = "landscape";
-const DEFAULT_BACKGROUND: CanvasBackground = { type: "color", color: "#ffffff" };
+const DEFAULT_BACKGROUND: CanvasBackground = {
+  type: "color",
+  color: "#ffffff",
+};
 
 export default function Whiteboard() {
   const [elements, setElements] = useState<WhiteboardElement[]>([]);
@@ -52,9 +64,12 @@ export default function Whiteboard() {
     { id: "layer-2", name: "Content", visible: true },
   ]);
   const [activeLayerId, setActiveLayerId] = useState("layer-2");
-  const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
+  const [selectedElementId, setSelectedElementId] = useState<string | null>(
+    null,
+  );
   const [resolution, setResolution] = useState(DEFAULT_RESOLUTION);
-  const [background, setBackground] = useState<CanvasBackground>(DEFAULT_BACKGROUND);
+  const [background, setBackground] =
+    useState<CanvasBackground>(DEFAULT_BACKGROUND);
   const [showLeftSidebar, setShowLeftSidebar] = useState(true);
   const [showRightSidebar, setShowRightSidebar] = useState(true);
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -67,61 +82,75 @@ export default function Whiteboard() {
     hd: { width: 1920, height: 1080, label: "HD (16:9)" },
   };
 
-  const currentResolution = resolutions[resolution as keyof typeof resolutions] || resolutions.landscape;
+  const currentResolution =
+    resolutions[resolution as keyof typeof resolutions] ||
+    resolutions.landscape;
 
-  const addElement = useCallback((type: WhiteboardElement["type"]) => {
-    const newElement: WhiteboardElement = {
-      id: `element-${Date.now()}`,
-      type,
-      x: 10 + Math.random() * 60,
-      y: 10 + Math.random() * 60,
-      width: type === "heading" ? 300 : type === "list" ? 250 : 200,
-      height: type === "paragraph" ? 120 : 40,
-      content:
-        type === "heading"
-          ? "Heading Title"
-          : type === "paragraph"
-            ? "This is a paragraph with multiple lines of text that can be edited."
-            : type === "list"
-              ? "Item 1\nItem 2\nItem 3"
-              : type === "checkbox"
-                ? "Check this item"
-                : "Edit this text",
-      layerId: activeLayerId,
-      fontSize: type === "heading" ? 28 : type === "paragraph" ? 14 : 16,
-      fontWeight: type === "heading" ? 700 : 400,
-      color: "#1f2937",
-      backgroundColor: "#ffffff",
-      visible: true,
-    };
-    setElements((prev) => [...prev, newElement]);
-    setSelectedElementId(newElement.id);
-  }, [activeLayerId]);
-
-  const updateElement = useCallback((id: string, updates: Partial<WhiteboardElement>) => {
-    setElements((prev) =>
-      prev.map((el) => (el.id === id ? { ...el, ...updates } : el))
-    );
-  }, []);
-
-  const deleteElement = useCallback((id: string) => {
-    setElements((prev) => prev.filter((el) => el.id !== id));
-    if (selectedElementId === id) setSelectedElementId(null);
-  }, [selectedElementId]);
-
-  const duplicateElement = useCallback((id: string) => {
-    const element = elements.find((el) => el.id === id);
-    if (element) {
-      const newElement = {
-        ...element,
+  const addElement = useCallback(
+    (type: WhiteboardElement["type"]) => {
+      const newElement: WhiteboardElement = {
         id: `element-${Date.now()}`,
-        x: element.x + 20,
-        y: element.y + 20,
+        type,
+        x: 10 + Math.random() * 60,
+        y: 10 + Math.random() * 60,
+        width: type === "heading" ? 300 : type === "list" ? 250 : 200,
+        height: type === "paragraph" ? 120 : 40,
+        content:
+          type === "heading"
+            ? "Heading Title"
+            : type === "paragraph"
+              ? "This is a paragraph with multiple lines of text that can be edited."
+              : type === "list"
+                ? "Item 1\nItem 2\nItem 3"
+                : type === "checkbox"
+                  ? "Check this item"
+                  : "Edit this text",
+        layerId: activeLayerId,
+        fontSize: type === "heading" ? 28 : type === "paragraph" ? 14 : 16,
+        fontWeight: type === "heading" ? 700 : 400,
+        color: "#1f2937",
+        backgroundColor: "#ffffff",
+        visible: true,
       };
-      setElements([...elements, newElement]);
+      setElements((prev) => [...prev, newElement]);
       setSelectedElementId(newElement.id);
-    }
-  }, [elements]);
+    },
+    [activeLayerId],
+  );
+
+  const updateElement = useCallback(
+    (id: string, updates: Partial<WhiteboardElement>) => {
+      setElements((prev) =>
+        prev.map((el) => (el.id === id ? { ...el, ...updates } : el)),
+      );
+    },
+    [],
+  );
+
+  const deleteElement = useCallback(
+    (id: string) => {
+      setElements((prev) => prev.filter((el) => el.id !== id));
+      if (selectedElementId === id) setSelectedElementId(null);
+    },
+    [selectedElementId],
+  );
+
+  const duplicateElement = useCallback(
+    (id: string) => {
+      const element = elements.find((el) => el.id === id);
+      if (element) {
+        const newElement = {
+          ...element,
+          id: `element-${Date.now()}`,
+          x: element.x + 20,
+          y: element.y + 20,
+        };
+        setElements([...elements, newElement]);
+        setSelectedElementId(newElement.id);
+      }
+    },
+    [elements],
+  );
 
   const addLayer = useCallback(() => {
     const newLayer: Layer = {
@@ -133,18 +162,21 @@ export default function Whiteboard() {
     setActiveLayerId(newLayer.id);
   }, [layers]);
 
-  const deleteLayer = useCallback((id: string) => {
-    if (layers.length === 1) return;
-    setLayers((prev) => prev.filter((l) => l.id !== id));
-    setElements((prev) => prev.filter((el) => el.layerId !== id));
-    if (activeLayerId === id) {
-      setActiveLayerId(layers[0]?.id || "layer-1");
-    }
-  }, [layers, activeLayerId]);
+  const deleteLayer = useCallback(
+    (id: string) => {
+      if (layers.length === 1) return;
+      setLayers((prev) => prev.filter((l) => l.id !== id));
+      setElements((prev) => prev.filter((el) => el.layerId !== id));
+      if (activeLayerId === id) {
+        setActiveLayerId(layers[0]?.id || "layer-1");
+      }
+    },
+    [layers, activeLayerId],
+  );
 
   const toggleLayerVisibility = useCallback((id: string) => {
     setLayers((prev) =>
-      prev.map((l) => (l.id === id ? { ...l, visible: !l.visible } : l))
+      prev.map((l) => (l.id === id ? { ...l, visible: !l.visible } : l)),
     );
   }, []);
 
@@ -160,12 +192,18 @@ export default function Whiteboard() {
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 md:gap-4">
             <Link to="/">
-              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-slate-400 hover:text-white"
+              >
                 <ChevronLeft className="h-4 w-4 mr-1" />
                 <span className="hidden sm:inline">Back</span>
               </Button>
             </Link>
-            <h1 className="text-lg md:text-xl font-bold text-white">Whiteboard</h1>
+            <h1 className="text-lg md:text-xl font-bold text-white">
+              Whiteboard
+            </h1>
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
@@ -183,7 +221,11 @@ export default function Whiteboard() {
                 className="text-slate-400 hover:text-white"
                 title={showLeftSidebar ? "Hide tools" : "Show tools"}
               >
-                {showLeftSidebar ? <Menu className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                {showLeftSidebar ? (
+                  <Menu className="h-4 w-4" />
+                ) : (
+                  <Menu className="h-4 w-4" />
+                )}
               </Button>
               {selectedElementId && (
                 <Button
@@ -191,9 +233,15 @@ export default function Whiteboard() {
                   variant="ghost"
                   onClick={() => setShowRightSidebar(!showRightSidebar)}
                   className="text-slate-400 hover:text-white"
-                  title={showRightSidebar ? "Hide properties" : "Show properties"}
+                  title={
+                    showRightSidebar ? "Hide properties" : "Show properties"
+                  }
                 >
-                  {showRightSidebar ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                  {showRightSidebar ? (
+                    <X className="h-4 w-4" />
+                  ) : (
+                    <Menu className="h-4 w-4" />
+                  )}
                 </Button>
               )}
             </div>
@@ -204,7 +252,10 @@ export default function Whiteboard() {
       {/* Main Content */}
       <div className="flex-1 flex gap-3 md:gap-4 p-3 md:p-4 overflow-hidden">
         {/* Left Sidebar - Tool Panel */}
-        <div className={`${showLeftSidebar ? 'w-56 md:w-64' : 'w-0'} bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex flex-col gap-4 transition-all duration-300 overflow-hidden`} style={{ overflowY: 'auto', overflowX: 'visible' }}>
+        <div
+          className={`${showLeftSidebar ? "w-56 md:w-64" : "w-0"} bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex flex-col gap-4 transition-all duration-300 overflow-hidden`}
+          style={{ overflowY: "auto", overflowX: "visible" }}
+        >
           <ElementToolbar onAddElement={addElement} />
 
           <div className="border-t border-slate-700/50 pt-4">
@@ -231,7 +282,9 @@ export default function Whiteboard() {
 
           {selectedElementId && (
             <div className="border-t border-slate-700/50 pt-4">
-              <h3 className="text-sm font-semibold text-white mb-3">Element Actions</h3>
+              <h3 className="text-sm font-semibold text-white mb-3">
+                Element Actions
+              </h3>
               <div className="flex flex-col gap-2">
                 <Button
                   size="sm"
@@ -257,7 +310,10 @@ export default function Whiteboard() {
         </div>
 
         {/* Canvas Area */}
-        <div className="flex-1 flex items-center justify-center overflow-auto bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg" style={{ minWidth: 0 }}>
+        <div
+          className="flex-1 flex items-center justify-center overflow-auto bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg"
+          style={{ minWidth: 0 }}
+        >
           <div
             ref={canvasRef}
             className="relative shadow-2xl rounded-lg overflow-hidden"
@@ -266,8 +322,12 @@ export default function Whiteboard() {
               height: `${currentResolution.height}px`,
               minWidth: `${currentResolution.width}px`,
               minHeight: `${currentResolution.height}px`,
-              backgroundColor: background.type === "color" ? background.color : "white",
-              backgroundImage: background.type === "image" && background.imageUrl ? `url(${background.imageUrl})` : undefined,
+              backgroundColor:
+                background.type === "color" ? background.color : "white",
+              backgroundImage:
+                background.type === "image" && background.imageUrl
+                  ? `url(${background.imageUrl})`
+                  : undefined,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -287,7 +347,9 @@ export default function Whiteboard() {
               <div className="absolute inset-0 flex items-center justify-center text-slate-300">
                 <div className="text-center">
                   <p className="mb-2">No elements on this canvas</p>
-                  <p className="text-sm text-slate-400">Add elements from the left panel</p>
+                  <p className="text-sm text-slate-400">
+                    Add elements from the left panel
+                  </p>
                 </div>
               </div>
             )}
@@ -296,7 +358,10 @@ export default function Whiteboard() {
 
         {/* Right Sidebar - Properties */}
         {selectedElementId && showRightSidebar && (
-          <div className="w-56 md:w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex-shrink-0 transition-all duration-300" style={{ overflowY: 'auto', overflowX: 'visible' }}>
+          <div
+            className="w-56 md:w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex-shrink-0 transition-all duration-300"
+            style={{ overflowY: "auto", overflowX: "visible" }}
+          >
             <ElementPropertyEditor
               element={elements.find((el) => el.id === selectedElementId)!}
               onUpdate={updateElement}
@@ -332,23 +397,33 @@ function ElementPropertyEditor({
       {element.type !== "checkbox" && (
         <>
           <div>
-            <label className="text-xs text-slate-400 block mb-2">Font Size</label>
+            <label className="text-xs text-slate-400 block mb-2">
+              Font Size
+            </label>
             <input
               type="range"
               min="8"
               max="48"
               value={element.fontSize || 16}
-              onChange={(e) => onUpdate(element.id, { fontSize: parseInt(e.target.value) })}
+              onChange={(e) =>
+                onUpdate(element.id, { fontSize: parseInt(e.target.value) })
+              }
               className="w-full"
             />
-            <span className="text-xs text-slate-400">{element.fontSize || 16}px</span>
+            <span className="text-xs text-slate-400">
+              {element.fontSize || 16}px
+            </span>
           </div>
 
           <div>
-            <label className="text-xs text-slate-400 block mb-2">Font Weight</label>
+            <label className="text-xs text-slate-400 block mb-2">
+              Font Weight
+            </label>
             <select
               value={element.fontWeight || 400}
-              onChange={(e) => onUpdate(element.id, { fontWeight: parseInt(e.target.value) })}
+              onChange={(e) =>
+                onUpdate(element.id, { fontWeight: parseInt(e.target.value) })
+              }
               className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white text-sm"
             >
               <option value="400">Regular</option>
@@ -367,22 +442,26 @@ function ElementPropertyEditor({
           onChange={(e) => onUpdate(element.id, { color: e.target.value })}
           className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
           style={{
-            appearance: 'none',
-            WebkitAppearance: 'none'
+            appearance: "none",
+            WebkitAppearance: "none",
           }}
         />
       </div>
 
       <div className="relative z-50">
-        <label className="text-xs text-slate-400 block mb-2">Background Color</label>
+        <label className="text-xs text-slate-400 block mb-2">
+          Background Color
+        </label>
         <input
           type="color"
           value={element.backgroundColor || "#ffffff"}
-          onChange={(e) => onUpdate(element.id, { backgroundColor: e.target.value })}
+          onChange={(e) =>
+            onUpdate(element.id, { backgroundColor: e.target.value })
+          }
           className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
           style={{
-            appearance: 'none',
-            WebkitAppearance: 'none'
+            appearance: "none",
+            WebkitAppearance: "none",
           }}
         />
       </div>
@@ -398,7 +477,11 @@ function ElementPropertyEditor({
                 checked={element.animation?.enabled || false}
                 onChange={(e) =>
                   onUpdate(element.id, {
-                    animation: { ...element.animation, enabled: e.target.checked, duration: element.animation?.duration || 3 },
+                    animation: {
+                      ...element.animation,
+                      enabled: e.target.checked,
+                      duration: element.animation?.duration || 3,
+                    },
                   })
                 }
                 className="w-4 h-4"
@@ -445,7 +528,9 @@ function ElementPropertyEditor({
           <input
             type="checkbox"
             checked={element.visible !== false}
-            onChange={(e) => onUpdate(element.id, { visible: e.target.checked })}
+            onChange={(e) =>
+              onUpdate(element.id, { visible: e.target.checked })
+            }
             className="w-4 h-4"
           />
           Visible

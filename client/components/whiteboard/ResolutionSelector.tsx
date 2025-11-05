@@ -1,10 +1,7 @@
 interface ResolutionSelectorProps {
   resolution: string;
   onResolutionChange: (resolution: string) => void;
-  resolutions: Record<
-    string,
-    { width: number; height: number; label: string }
-  >;
+  resolutions: Record<string, { width: number; height: number; label: string }>;
 }
 
 export default function ResolutionSelector({
@@ -14,7 +11,9 @@ export default function ResolutionSelector({
 }: ResolutionSelectorProps) {
   return (
     <div className="flex items-center gap-2">
-      <label className="text-xs md:text-sm text-slate-300 hidden sm:inline">Res:</label>
+      <label className="text-xs md:text-sm text-slate-300 hidden sm:inline">
+        Res:
+      </label>
       <select
         value={resolution}
         onChange={(e) => onResolutionChange(e.target.value)}

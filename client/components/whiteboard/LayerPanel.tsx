@@ -39,7 +39,8 @@ export default function LayerPanel({
                 {layer.name}
               </p>
               <p className="text-xs text-slate-400">
-                {elementCount(layer.id)} element{elementCount(layer.id) !== 1 ? "s" : ""}
+                {elementCount(layer.id)} element
+                {elementCount(layer.id) !== 1 ? "s" : ""}
               </p>
             </div>
             <div className="flex items-center gap-1">

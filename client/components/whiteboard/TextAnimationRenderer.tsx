@@ -168,7 +168,9 @@ export default function TextAnimationRenderer({
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-slate-900 border border-slate-700 rounded-lg p-6 shadow-2xl max-w-2xl w-full">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Text Animation Preview</h3>
+              <h3 className="text-lg font-semibold text-white">
+                Text Animation Preview
+              </h3>
               <button
                 onClick={handleClose}
                 className="text-slate-400 hover:text-white transition-colors"
@@ -201,11 +203,7 @@ export default function TextAnimationRenderer({
                   `}</style>
                 </defs>
 
-                <text
-                  x="50"
-                  y="150"
-                  className="anim-text"
-                >
+                <text x="50" y="150" className="anim-text">
                   {element.content}
                 </text>
               </svg>

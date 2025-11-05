@@ -11,15 +11,15 @@ export default function BackgroundPanel({
 }: BackgroundPanelProps) {
   return (
     <div className="space-y-3 md:space-y-4">
-      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">Canvas Bg</h3>
+      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">
+        Canvas Bg
+      </h3>
 
       <div>
         <label className="text-xs text-slate-400 block mb-2">Type</label>
         <div className="flex gap-2">
           <button
-            onClick={() =>
-              onBackgroundChange({ ...background, type: "color" })
-            }
+            onClick={() => onBackgroundChange({ ...background, type: "color" })}
             className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-colors ${
               background.type === "color"
                 ? "bg-cyan-500/20 border border-cyan-400 text-cyan-300"
@@ -29,9 +29,7 @@ export default function BackgroundPanel({
             Color
           </button>
           <button
-            onClick={() =>
-              onBackgroundChange({ ...background, type: "image" })
-            }
+            onClick={() => onBackgroundChange({ ...background, type: "image" })}
             className={`flex-1 px-3 py-2 rounded text-sm font-medium transition-colors ${
               background.type === "image"
                 ? "bg-cyan-500/20 border border-cyan-400 text-cyan-300"
@@ -56,8 +54,8 @@ export default function BackgroundPanel({
                 }
                 className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
                 style={{
-                  appearance: 'none',
-                  WebkitAppearance: 'none'
+                  appearance: "none",
+                  WebkitAppearance: "none",
                 }}
               />
             </div>
@@ -76,11 +74,15 @@ export default function BackgroundPanel({
 
       {background.type === "image" && (
         <div>
-          <label className="text-xs text-slate-400 block mb-2">Upload Image</label>
+          <label className="text-xs text-slate-400 block mb-2">
+            Upload Image
+          </label>
           <label className="block relative cursor-pointer">
             <div className="bg-slate-800 border border-slate-600 rounded px-4 py-3 text-center hover:border-cyan-400 transition-colors">
               <p className="text-sm text-slate-300 font-medium">
-                {background.imageUrl ? "✓ Image uploaded" : "Click to select image"}
+                {background.imageUrl
+                  ? "✓ Image uploaded"
+                  : "Click to select image"}
               </p>
               <p className="text-xs text-slate-500 mt-1">or drag and drop</p>
             </div>

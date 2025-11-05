@@ -84,7 +84,15 @@ export default function DraggableElement({
         document.removeEventListener("mouseup", handleMouseUp);
       };
     }
-  }, [isDragging, isResizing, dragStart, resizeStart, element, onUpdate, canvasRef]);
+  }, [
+    isDragging,
+    isResizing,
+    dragStart,
+    resizeStart,
+    element,
+    onUpdate,
+    canvasRef,
+  ]);
 
   const renderContent = () => {
     switch (element.type) {
