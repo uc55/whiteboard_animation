@@ -41,23 +41,7 @@ const DEFAULT_RESOLUTION = "landscape";
 const DEFAULT_BACKGROUND: CanvasBackground = { type: "color", color: "#ffffff" };
 
 export default function Whiteboard() {
-  const [elements, setElements] = useState<WhiteboardElement[]>([
-    {
-      id: "test-1",
-      type: "text",
-      x: 20,
-      y: 20,
-      width: 200,
-      height: 40,
-      content: "Click buttons to add more",
-      layerId: "layer-2",
-      fontSize: 16,
-      fontWeight: 400,
-      color: "#1f2937",
-      backgroundColor: "#ffffff",
-      visible: true,
-    }
-  ]);
+  const [elements, setElements] = useState<WhiteboardElement[]>([]);
   const [layers, setLayers] = useState<Layer[]>([
     { id: "layer-1", name: "Background", visible: true },
     { id: "layer-2", name: "Content", visible: true },
