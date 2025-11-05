@@ -151,22 +151,48 @@ export default function Whiteboard() {
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col">
       {/* Header */}
-      <header className="bg-slate-900/80 backdrop-blur border-b border-slate-700/50 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+      <header className="bg-slate-900/80 backdrop-blur border-b border-slate-700/50 px-4 md:px-6 py-4 sticky top-0 z-40">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
                 <ChevronLeft className="h-4 w-4 mr-1" />
-                Back
+                <span className="hidden sm:inline">Back</span>
               </Button>
             </Link>
-            <h1 className="text-xl font-bold text-white">Whiteboard Editor</h1>
+            <h1 className="text-lg md:text-xl font-bold text-white">Whiteboard</h1>
           </div>
-          <ResolutionSelector
-            resolution={resolution}
-            onResolutionChange={setResolution}
-            resolutions={resolutions}
-          />
+
+          <div className="flex items-center gap-2 md:gap-4">
+            <ResolutionSelector
+              resolution={resolution}
+              onResolutionChange={setResolution}
+              resolutions={resolutions}
+            />
+
+            <div className="hidden md:flex items-center gap-2 border-l border-slate-700/50 pl-4">
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => setShowLeftSidebar(!showLeftSidebar)}
+                className="text-slate-400 hover:text-white"
+                title={showLeftSidebar ? "Hide tools" : "Show tools"}
+              >
+                {showLeftSidebar ? <Menu className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              </Button>
+              {selectedElementId && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setShowRightSidebar(!showRightSidebar)}
+                  className="text-slate-400 hover:text-white"
+                  title={showRightSidebar ? "Hide properties" : "Show properties"}
+                >
+                  {showRightSidebar ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                </Button>
+              )}
+            </div>
+          </div>
         </div>
       </header>
 
