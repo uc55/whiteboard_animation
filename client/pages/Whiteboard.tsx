@@ -30,7 +30,14 @@ export interface Layer {
   locked?: boolean;
 }
 
+export interface CanvasBackground {
+  type: "color" | "image";
+  color?: string;
+  imageUrl?: string;
+}
+
 const DEFAULT_RESOLUTION = "landscape";
+const DEFAULT_BACKGROUND: CanvasBackground = { type: "color", color: "#ffffff" };
 
 export default function Whiteboard() {
   const [elements, setElements] = useState<WhiteboardElement[]>([
