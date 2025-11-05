@@ -235,12 +235,16 @@ export default function Whiteboard() {
         <div className="flex-1 flex items-center justify-center overflow-auto bg-gradient-to-br from-slate-900 to-slate-950">
           <div
             ref={canvasRef}
-            className="relative bg-white shadow-2xl rounded-lg overflow-hidden"
+            className="relative shadow-2xl rounded-lg overflow-hidden"
             style={{
               width: `${currentResolution.width}px`,
               height: `${currentResolution.height}px`,
               minWidth: `${currentResolution.width}px`,
               minHeight: `${currentResolution.height}px`,
+              backgroundColor: background.type === "color" ? background.color : "white",
+              backgroundImage: background.type === "image" && background.imageUrl ? `url(${background.imageUrl})` : undefined,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           >
             {visibleElements.map((element) => (
