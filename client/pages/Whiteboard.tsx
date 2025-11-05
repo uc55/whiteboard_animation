@@ -252,7 +252,7 @@ export default function Whiteboard() {
         </div>
 
         {/* Canvas Area */}
-        <div className="flex-1 flex items-center justify-center overflow-auto bg-gradient-to-br from-slate-900 to-slate-950">
+        <div className="flex-1 flex items-center justify-center overflow-auto bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg" style={{ minWidth: 0 }}>
           <div
             ref={canvasRef}
             className="relative shadow-2xl rounded-lg overflow-hidden"
