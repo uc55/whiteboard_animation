@@ -197,9 +197,9 @@ export default function Whiteboard() {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex gap-4 p-4 overflow-hidden">
+      <div className="flex-1 flex gap-3 md:gap-4 p-3 md:p-4 overflow-hidden">
         {/* Left Sidebar - Tool Panel */}
-        <div className="w-64 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex flex-col gap-4" style={{ overflowY: 'auto', overflowX: 'visible' }}>
+        <div className={`${showLeftSidebar ? 'w-56 md:w-64' : 'w-0'} bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 flex flex-col gap-4 transition-all duration-300 overflow-hidden`} style={{ overflowY: 'auto', overflowX: 'visible' }}>
           <ElementToolbar onAddElement={addElement} />
 
           <div className="border-t border-slate-700/50 pt-4">
