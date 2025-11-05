@@ -263,7 +263,7 @@ export default function Whiteboard() {
 
         {/* Right Sidebar - Properties */}
         {selectedElementId && (
-          <div className="w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 overflow-y-auto">
+          <div className="w-72 bg-slate-900/50 backdrop-blur border border-slate-700/50 rounded-lg p-4 overflow-y-auto overflow-x-visible">
             <ElementPropertyEditor
               element={elements.find((el) => el.id === selectedElementId)!}
               onUpdate={updateElement}
