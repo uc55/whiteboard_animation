@@ -48,8 +48,8 @@ const tools = [
 export default function ElementToolbar({ onAddElement }: ElementToolbarProps) {
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-semibold text-white mb-3">Add Elements</h3>
-      <div className="grid grid-cols-2 gap-2">
+      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">Add Elements</h3>
+      <div className="grid grid-cols-2 gap-1 md:gap-2">
         {tools.map((tool) => {
           const Icon = tool.icon;
           return (
@@ -58,10 +58,10 @@ export default function ElementToolbar({ onAddElement }: ElementToolbarProps) {
               variant="outline"
               size="sm"
               onClick={() => onAddElement(tool.type)}
-              className="flex flex-col items-center gap-1 h-auto py-2"
+              className="flex flex-col items-center gap-1 h-auto py-1 md:py-2 text-xs"
               title={tool.description}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="h-3 w-3 md:h-4 md:w-4" />
               <span className="text-xs">{tool.label}</span>
             </Button>
           );
