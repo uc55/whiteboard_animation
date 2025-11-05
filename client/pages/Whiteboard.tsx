@@ -64,6 +64,7 @@ export default function Whiteboard() {
   const [activeLayerId, setActiveLayerId] = useState("layer-2");
   const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
   const [resolution, setResolution] = useState(DEFAULT_RESOLUTION);
+  const [background, setBackground] = useState<CanvasBackground>(DEFAULT_BACKGROUND);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const resolutions = {
