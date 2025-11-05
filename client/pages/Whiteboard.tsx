@@ -50,6 +50,8 @@ export default function Whiteboard() {
   const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
   const [resolution, setResolution] = useState(DEFAULT_RESOLUTION);
   const [background, setBackground] = useState<CanvasBackground>(DEFAULT_BACKGROUND);
+  const [showLeftSidebar, setShowLeftSidebar] = useState(true);
+  const [showRightSidebar, setShowRightSidebar] = useState(true);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const resolutions = {
