@@ -324,23 +324,31 @@ function ElementPropertyEditor({
         </>
       )}
 
-      <div>
+      <div className="relative z-50">
         <label className="text-xs text-slate-400 block mb-2">Text Color</label>
         <input
           type="color"
           value={element.color || "#1f2937"}
           onChange={(e) => onUpdate(element.id, { color: e.target.value })}
-          className="w-full h-10 rounded cursor-pointer"
+          className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
+          style={{
+            appearance: 'none',
+            WebkitAppearance: 'none'
+          }}
         />
       </div>
 
-      <div>
+      <div className="relative z-50">
         <label className="text-xs text-slate-400 block mb-2">Background Color</label>
         <input
           type="color"
           value={element.backgroundColor || "#ffffff"}
           onChange={(e) => onUpdate(element.id, { backgroundColor: e.target.value })}
-          className="w-full h-10 rounded cursor-pointer"
+          className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
+          style={{
+            appearance: 'none',
+            WebkitAppearance: 'none'
+          }}
         />
       </div>
 
