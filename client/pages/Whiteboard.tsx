@@ -314,6 +314,8 @@ function ElementPropertyEditor({
   element: WhiteboardElement;
   onUpdate: (id: string, updates: Partial<WhiteboardElement>) => void;
 }) {
+  const isTextElement = ["text", "heading", "paragraph"].includes(element.type);
+
   return (
     <div className="space-y-4">
       <div>
