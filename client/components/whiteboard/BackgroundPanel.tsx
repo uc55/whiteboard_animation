@@ -10,8 +10,8 @@ export default function BackgroundPanel({
   onBackgroundChange,
 }: BackgroundPanelProps) {
   return (
-    <div className="space-y-4">
-      <h3 className="text-sm font-semibold text-white mb-3">Canvas Background</h3>
+    <div className="space-y-3 md:space-y-4">
+      <h3 className="text-xs md:text-sm font-semibold text-white mb-3">Canvas Bg</h3>
 
       <div>
         <label className="text-xs text-slate-400 block mb-2">Type</label>
