@@ -35,7 +35,7 @@ export default function LayerPanel({
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">
+              <p className="text-xs md:text-sm font-medium text-white truncate">
                 {layer.name}
               </p>
               <p className="text-xs text-slate-400">
