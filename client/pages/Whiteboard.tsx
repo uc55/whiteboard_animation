@@ -6,6 +6,7 @@ import DraggableElement from "@/components/whiteboard/DraggableElement";
 import LayerPanel from "@/components/whiteboard/LayerPanel";
 import ResolutionSelector from "@/components/whiteboard/ResolutionSelector";
 import ElementToolbar from "@/components/whiteboard/ElementToolbar";
+import BackgroundPanel from "@/components/whiteboard/BackgroundPanel";
 
 export interface WhiteboardElement {
   id: string;
