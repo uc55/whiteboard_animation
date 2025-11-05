@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Plus, Trash2, Copy, Eye, EyeOff } from "lucide-react";
+import { ChevronLeft, Plus, Trash2, Copy, Eye, EyeOff, Menu, X } from "lucide-react";
 import DraggableElement from "@/components/whiteboard/DraggableElement";
 import LayerPanel from "@/components/whiteboard/LayerPanel";
 import ResolutionSelector from "@/components/whiteboard/ResolutionSelector";
