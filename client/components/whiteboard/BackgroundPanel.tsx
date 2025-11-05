@@ -46,15 +46,21 @@ export default function BackgroundPanel({
       {background.type === "color" && (
         <div>
           <label className="text-xs text-slate-400 block mb-2">Color</label>
-          <div className="flex gap-2">
-            <input
-              type="color"
-              value={background.color || "#ffffff"}
-              onChange={(e) =>
-                onBackgroundChange({ ...background, color: e.target.value })
-              }
-              className="flex-1 h-10 rounded cursor-pointer"
-            />
+          <div className="flex gap-2 relative z-50">
+            <div className="relative flex-1">
+              <input
+                type="color"
+                value={background.color || "#ffffff"}
+                onChange={(e) =>
+                  onBackgroundChange({ ...background, color: e.target.value })
+                }
+                className="w-full h-10 rounded cursor-pointer border-0 relative z-50"
+                style={{
+                  appearance: 'none',
+                  WebkitAppearance: 'none'
+                }}
+              />
+            </div>
             <input
               type="text"
               value={background.color || "#ffffff"}
