@@ -7,6 +7,7 @@ import LayerPanel from "@/components/whiteboard/LayerPanel";
 import ResolutionSelector from "@/components/whiteboard/ResolutionSelector";
 import ElementToolbar from "@/components/whiteboard/ElementToolbar";
 import BackgroundPanel from "@/components/whiteboard/BackgroundPanel";
+import TextAnimationRenderer from "@/components/whiteboard/TextAnimationRenderer";
 
 export interface WhiteboardElement {
   id: string;
