@@ -22,6 +22,10 @@ export interface WhiteboardElement {
   color?: string;
   backgroundColor?: string;
   visible?: boolean;
+  animation?: {
+    enabled: boolean;
+    duration: number;
+  };
 }
 
 export interface Layer {
