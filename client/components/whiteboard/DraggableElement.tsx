@@ -7,6 +7,8 @@ interface DraggableElementProps {
   onSelect: () => void;
   onUpdate: (id: string, updates: Partial<WhiteboardElement>) => void;
   canvasRef: React.RefObject<HTMLDivElement>;
+  showAnimation?: boolean;
+  animationProgress?: number;
 }
 
 export default function DraggableElement({
