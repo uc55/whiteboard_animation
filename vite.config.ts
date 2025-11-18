@@ -5,11 +5,14 @@ import { createServer } from "./server";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+	//base: "/whiteboard_animation/",
+	base: mode === "production" ? "/whiteboard_animation/" : "/",
   server: {
     host: "::",
     port: 8080,
     fs: {
-      allow: ["./client", "./shared"],
+      //allow: ["./client", "./shared"],
+	  allow: ["."],
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
   },
